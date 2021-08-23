@@ -1,52 +1,52 @@
-import React from 'react';
+import React, { Component } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 class CountryDetails extends React.Component {
   state = {
-    match: '',
-    location: '',
-    history: '',
+    name: ' ',
+    capital: ' ',
+    area: ' ',
+    borders: ' ',
   };
 
-  //Component LifeCycle - Lifecycle events
-  async componentDidMount() {
-    console.log('In Component Did mount');
-    //Make a call to an API to get a project detail
-
-    //Get the id of the project from the URL
-    //After I get the ID - Get the project
-    //Set the state with the project
-
-    //<= id is the id I have on my route: /projects/:id ^
-    console.log(
-      'projectID that comes from the URL',
-      this.props.match.params.id
-    );
-    //Finding the project on projectsJSON based on the id
-    //that comes from the URL
-    const countryId = this.props.match.params.id;
-    const country = await axios.get(
-      `https://restcountries.eu/rest/v2/alpha/${countryId}`
+  fetchCountryDetails = async () => {
+    const response = await axios.get(
+      `https://restcountries.eu/rest/v2/alpha/${this.props.match.params.countryCode}`
     );
     this.setState({
-      name: country.data.name,
-      capital: country.data.capital,
-      area: country.data.area,
-      borders: country.data.borders,
+      name: response.data.name,
+      capital: response.data.capital,
+      area: response.data.area,
+      borders: response.data.borders,
     });
+  };
+
+  async componentDidMount() {
+    this.fetchCountryDetails();
   }
 
-  componentDidUpdate() {}
+  async componentDidUpdate() {
+    this.fetchCountryDetails();
+  }
 
   render() {
-    console.log('In Render');
     const { name, capital, area, borders } = this.state;
     return (
       <>
+        <h2>Country Details</h2>
         <h3>{name}</h3>
-        <h4>{capital}</h4>
-        <p>{area}</p>
-        <p>{borders}</p>
+        <h4>Capital: {capital}</h4>
+        <p>Area: {area}</p>
+        <ul>
+          {borders.map((border) => {
+            return (
+              <li>
+                <Link to={`/border`}>{border}</Link>
+              </li>
+            );
+          })}
+        </ul>
       </>
     );
   }

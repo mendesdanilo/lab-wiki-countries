@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-class CountriesList extends React.Component {
+class CountryList extends React.Component {
   state = {
     countries: [],
   };
@@ -40,4 +40,4 @@ class CountriesList extends React.Component {
   }
 }
 
-export default CountriesList;
+export default CountryList;

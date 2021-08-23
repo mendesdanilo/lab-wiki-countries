@@ -1,23 +1,32 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
-import NavBar from './components/NavBar';
-import CountriesList from './components/CountriesList';
+import axios from 'axios';
+import CountryList from './components/CountryList';
 import CountryDetails from './components/CountryDetails';
-
 import { Switch, Route } from 'react-router-dom';
 
-function App() {
-  return (
-    <div className="App">
-      <NavBar />
-      <Switch>
-        <div className="container">
-          <Route path="/countrieslist" component={CountriesList} />
-          <Route path="/:id" component={CountryDetails} />
-        </div>
-      </Switch>
-    </div>
-  );
+class App extends React.Component {
+  state = {
+    countries: [],
+  };
+
+  async componentDidMount() {
+    const response = await axios.get(`https://restcountries.eu/rest/v2/all`);
+    this.setState({
+      countries: response.data,
+    });
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <CountryList countries={this.state.countries} />
+        <Switch>
+          <Route path="/:countryCode" component={CountryDetails} />
+        </Switch>
+      </div>
+    );
+  }
 }
 
 export default App;
