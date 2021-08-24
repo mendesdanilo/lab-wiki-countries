@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
@@ -35,18 +35,10 @@ class CountryDetails extends React.Component {
     return (
       <>
         <h2>Country Details</h2>
-        <h3>{name}</h3>
+        <h3>Name: {name}</h3>
         <h4>Capital: {capital}</h4>
         <p>Area: {area}</p>
-        <ul>
-          {borders.map((border) => {
-            return (
-              <li>
-                <Link to={`/border`}>{border}</Link>
-              </li>
-            );
-          })}
-        </ul>
+        <p>Borders: {borders}</p>
       </>
     );
   }

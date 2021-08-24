@@ -1,29 +1,32 @@
 import React from 'react';
 import './App.css';
 import axios from 'axios';
-import CountryList from './components/CountryList';
 import CountryDetails from './components/CountryDetails';
-import { Switch, Route } from 'react-router-dom';
+import CountryListClass from './components/CountryListClass';
+import { Route } from 'react-router-dom';
 
 class App extends React.Component {
-  state = {
-    countries: [],
-  };
+  // state = {
+  //   countries: [],
+  // };
 
-  async componentDidMount() {
-    const response = await axios.get(`https://restcountries.eu/rest/v2/all`);
-    this.setState({
-      countries: response.data,
-    });
-  }
+  // async componentDidMount() {
+  //   const response = await axios.get(`https://restcountries.eu/rest/v2/all`);
+  //   this.setState({
+  //     countries: response.data,
+  //   });
+  // }
 
   render() {
     return (
       <div className="App">
-        <CountryList countries={this.state.countries} />
-        <Switch>
+        <div style={{ float: 'left', height: '900px', overflow: 'scroll' }}>
+          {/* <CountryList countries={this.state.countries} /> */}
+          <CountryListClass />
+        </div>
+        <div style={{ float: 'right', marginRight: '100px' }}>
           <Route path="/:countryCode" component={CountryDetails} />
-        </Switch>
+        </div>
       </div>
     );
   }
