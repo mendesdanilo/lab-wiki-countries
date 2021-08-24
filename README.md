@@ -61,9 +61,6 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-// comment skipped to stay organized
-reportWebVitals();
-```
 
 ### Bootstrap installation
 
@@ -149,4 +146,4 @@ Let's make a `GET` request to the URL [https://restcountries.eu/#api-endpoints-a
 
 The request should happen first thing when the application loads, therefore think about when and from where we should make the request to the API.
 
-Happy coding! :heart:
+Happy coding
