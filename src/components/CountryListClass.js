@@ -22,7 +22,7 @@ class CountryListClass extends React.Component {
           {this.state.countries.map((country) => {
             return (
               <li>
-                <Link to={`/${country.alpha3code}`}> {country.name} </Link>
+                <Link to={`/${country.alpha3Code}`}> {country.name} </Link>
               </li>
             );
           })}

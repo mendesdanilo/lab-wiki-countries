@@ -27,7 +27,7 @@ class App extends React.Component {
           <CountryListClass />
         </div>
         <div style={{ float: 'right', marginRight: '100px' }}>
-          <Route path="/:cca3" component={CountryDetails} />
+          <Route path="/:countryCode" component={CountryDetails} />
         </div>
       </div>
     );
