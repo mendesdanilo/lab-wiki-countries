@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import axios from 'axios';
+import NavBar from './components/NavBar';
 import CountryDetails from './components/CountryDetails';
 import CountryListClass from './components/CountryListClass';
 import { Route } from 'react-router-dom';
@@ -20,12 +21,13 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
+        <NavBar />
         <div style={{ float: 'left', height: '900px', overflow: 'scroll' }}>
           {/* <CountryList countries={this.state.countries} /> */}
           <CountryListClass />
         </div>
         <div style={{ float: 'right', marginRight: '100px' }}>
-          <Route path="/:countryCode" component={CountryDetails} />
+          <Route path="/:cca3" component={CountryDetails} />
         </div>
       </div>
     );

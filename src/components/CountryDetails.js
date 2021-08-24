@@ -12,7 +12,7 @@ class CountryDetails extends React.Component {
 
   fetchCountryDetails = async () => {
     const response = await axios.get(
-      `https://restcountries.eu/rest/v2/alpha/${this.props.match.params.countryCode}`
+      `https://restcountries.eu/rest/v2/alpha/${this.props.match.params.cca3}`
     );
     this.setState({
       name: response.data.name,
